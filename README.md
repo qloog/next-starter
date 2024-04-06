@@ -73,3 +73,23 @@ Ok to proceed? (y) y
 
 Success! Project initialization completed. You may now add components.
 ```
+
+## Tech Stack
+
+- Next.js
+- Tailwind CSS
+- TypeScript
+- shadcn-ui
+
+## Features
+
+[x] Base directory structure
+[] Common clients
+  [] MySQL, PostgreSQL
+  [] Redis
+  [] MongoDB
+
+[] Sign-up/Login
+  [] next-auth
+  [] clerk
+
