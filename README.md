@@ -93,3 +93,52 @@ Success! Project initialization completed. You may now add components.
   [] next-auth
   [] clerk
 
+## Install dependencies
+
+```bash
+npm install mongodb mongoose
+npm install @upstash/redis
+npm install prisma
+```
+
+## Database operation
+
+```bash
+# init prisma, it will create directory prisma, including schema.prisma
+npx prisma init
+# create table in the database
+npx prisma migrate dev --name init
+# push data to the database
+# pro tips: don't use this command if there are data in your database
+# you should use `npx prisma migrate` instead
+npx prisma db push
+# generate prisma client if you have changed the schema
+npx prisma generate
+# GUI to view and edit data in your database
+npx prisma studios
+
+# help
+npx prisma --help
+```
+
+## Plugins
+
+- ES7+ React/Redux/React-Native snippets
+- Tailwind CSS IntelliSense
+- Eslint
+- Prettier
+- Prisma
+- Prisma NextJS
+
+## Templates
+
+- https://www.tailwindawesome.com/
+- https://www.tailwindawesome.com/resources/community/demo (Community)
+
+## References
+
+- https://nextjs.org/
+- https://ui.shadcn.com/
+- https://www.prisma.io/
+- https://www.mongodb.com/
+- https://mongoosejs.com/
