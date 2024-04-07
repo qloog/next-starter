@@ -85,9 +85,9 @@ Success! Project initialization completed. You may now add components.
 
 [x] Base directory structure
 [] Common clients
-  [] MySQL, PostgreSQL
-  [] Redis
-  [] MongoDB
+  [x] MySQL, PostgreSQL
+  [x] Redis
+  [x] MongoDB
 
 [] Sign-up/Login
   [] next-auth
