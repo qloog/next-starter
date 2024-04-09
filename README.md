@@ -90,8 +90,16 @@ Success! Project initialization completed. You may now add components.
   [x] MongoDB
 
 [] Sign-up/Login
-  [] next-auth
+  [] next-auth(v5)
+    - login
+    - sign-up
+    - forgot password
+    - reset password
   [] clerk
+
+> https://authjs.dev/guides/upgrade-to-v5
+> https://www.freecodecamp.org/news/how-to-authenticate-users-with-nextauth-in-nextjs-app-and-pages-router/
+> https://github.com/AntonioErdeljac/next-auth-v5-advanced-guide
 
 ## Install dependencies
 
@@ -99,6 +107,22 @@ Success! Project initialization completed. You may now add components.
 npm install mongodb mongoose
 npm install @upstash/redis
 npm install prisma
+# v5
+npm install next-auth@beta
+npm install @auth/prisma-adapter
+
+npm install zod
+npm install @hookform/resolvers
+npm install bcryptjs @types/bcryptjs
+
+npm install react-icons
+npm install @radix-ui/react-icons
+
+# send email
+npm install resend
+npm install uuid
+npm i --save-dev @types/uuid
+npm install react-spinners
 ```
 
 ## Database operation
@@ -129,6 +153,43 @@ npx prisma --help
 - Prettier
 - Prisma
 - Prisma NextJS
+
+## Auth
+
+Server component, get user
+
+```typescript
+import { auth } from '@/libs/auth'
+
+...
+const session = await auth()
+console.log(session?.user)
+// Output
+// {
+//   name: 'John Doe',
+//   email: 'john@example.com',
+//   image: 'https://example.com/john.jpg',
+// }
+```
+
+Client component, get user
+
+```typescript
+import { useSession } from "next-auth/react"
+
+...
+const { data: session, status } = useSession()
+console.log(status)
+// Output
+// "authenticated" or "unauthenticated" or "loading"
+console.log(session?.user)
+// Output
+// {
+//   name: 'John Doe',
+//   email: 'john@example.com',
+//   image: 'https://example.com/john.jpg',
+// }
+```
 
 ## Templates
 
