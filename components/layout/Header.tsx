@@ -1,9 +1,16 @@
-import React from 'react'
+"use client";
+
+import React, { use } from 'react'
+import { useSession } from 'next-auth/react';
+import { Navbar } from './Navbar';
 
 const Header = () => {
   return (
-    <div>Header</div>
+    <header style={{ display: "flex", "justifyContent": "space-around" }}>
+      <Navbar />
+    </header>
   )
 }
+
 
 export default Header
