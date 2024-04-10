@@ -1,3 +1,4 @@
+import prisma from "@/lib/client/prisma";
 
 export const getVerificationTokenByToken = async (
   token: string

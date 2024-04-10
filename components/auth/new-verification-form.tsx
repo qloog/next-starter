@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { BeatLoader } from "react-spinners";
 
@@ -17,7 +17,11 @@ export const NewVerificationForm = () => {
 
   const token = searchParams.get("token");
 
+  const hasSubmitted = useRef(false);
+  
   const onSubmit = useCallback(() => {
+    if (hasSubmitted.current) return;
+
     if (success || error) return;
 
     if (!token) {
@@ -33,6 +37,8 @@ export const NewVerificationForm = () => {
       .catch(() => {
         setError("Something went wrong!");
       })
+    
+    hasSubmitted.current = true;
   }, [token, success, error]);
 
   useEffect(() => {

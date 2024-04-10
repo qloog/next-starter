@@ -20,6 +20,22 @@ export const Navbar = () => {
             首页
           </Link>
         </Button>
+        <Button 
+          asChild
+          variant={pathname === "/test/client" ? "default" : "outline"}
+        >
+          <Link href="/test/client">
+            Client
+          </Link>
+        </Button>
+        <Button 
+          asChild
+          variant={pathname === "/test/server" ? "default" : "outline"}
+        >
+          <Link href="/test/server">
+            Server
+          </Link>
+        </Button>
       </div>
       <UserButton />
     </nav>
