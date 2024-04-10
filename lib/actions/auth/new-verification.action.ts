@@ -7,14 +7,9 @@ import { getVerificationTokenByToken } from "@/lib/actions/auth/verificiation.ac
 export const newVerification = async (token: string) => {
   const existingToken = await getVerificationTokenByToken(token);
 
-  console.log('---token----', token)
-  console.log('---existingToken----', existingToken)
-
   if (!existingToken) {
     return { error: "Token does not exist!" };
   }
-
-  console.log('---1----', token)
 
   const hasExpired = new Date(existingToken.expires) < new Date();
 
@@ -22,15 +17,11 @@ export const newVerification = async (token: string) => {
     return { error: "Token has expired!" };
   }
 
-  console.log('---2----', token)
-
   const existingUser = await getUserByEmail(existingToken.email);
 
   if (!existingUser) {
     return { error: "Email does not exist!" };
   }
-
-  console.log('---3----', token)
 
   await prisma.user.update({
     where: { id: existingUser.id },
@@ -40,13 +31,9 @@ export const newVerification = async (token: string) => {
     }
   });
 
-  console.log('---4----', token)
-
   await prisma.verificationToken.delete({
     where: { id: existingToken.id }
   });
-
-  console.log('---5----', token)
 
   return { success: "Email verified!" };
 };
