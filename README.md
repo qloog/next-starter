@@ -83,19 +83,18 @@ Success! Project initialization completed. You may now add components.
 
 ## Features
 
-[x] Base directory structure
-[] Common clients
-  [x] MySQL, PostgreSQL
-  [x] Redis
-  [x] MongoDB
+- [x] Base directory structure
+- [x] Common clients
+  - [x] MySQL, PostgreSQL
+  - [x] Redis
+  - [x] MongoDB
 
-[] Sign-up/Login
-  [] next-auth(v5)
-    - login
-    - sign-up
-    - forgot password
-    - reset password
-  [] clerk
+- [] Sign-up/Login
+  - [x] next-auth(v5)
+    - [x] login
+    - [x]sign-up
+    - [x]forgot password
+    - [x]reset password
 
 > https://authjs.dev/guides/upgrade-to-v5
 > https://www.freecodecamp.org/news/how-to-authenticate-users-with-nextauth-in-nextjs-app-and-pages-router/
@@ -120,6 +119,8 @@ npm install @radix-ui/react-icons
 
 # send email
 npm install resend
+npm install nodemailer
+npm i --save-dev @types/nodemailer
 npm install uuid
 npm i --save-dev @types/uuid
 npm install react-spinners
