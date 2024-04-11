@@ -204,3 +204,5 @@ console.log(session?.user)
 - https://www.prisma.io/
 - https://www.mongodb.com/
 - https://mongoosejs.com/
+- https://tailwindcomponents.com/gradient-generator/
+- https://tailwindcss.com/docs/gradient-color-stops

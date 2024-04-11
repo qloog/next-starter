@@ -5,10 +5,12 @@ import React from 'react'
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <main>
+    <>
       <Header />
-      {children}
-    </main>
+      <main className='flex-1'>
+        {children}
+      </main>
+    </>
   )
 }
 

@@ -5,39 +5,51 @@ import { usePathname } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import { UserButton } from "@/components/auth/user-button";
+import { Icons } from "@/components/icons"
+import { cn } from '@/lib/utils';
 
 export const Navbar = () => {
   const pathname = usePathname();
 
   return (
-    <nav className="bg-secondary flex justify-between items-center p-4 rounded-xl w-[1000px] shadow-sm">
-      <div className="flex gap-x-2">
-        <Button 
-          asChild
-          variant={pathname === "/" ? "default" : "outline"}
+    <div className="mr-4 hidden md:flex">
+      <Link href="/" className="mr-6 flex items-center space-x-2">
+        <Icons.logo className="h-6 w-6" />
+        <span className="hidden font-bold sm:inline-block">
+          AIGC
+        </span>
+      </Link>
+      <nav className="flex items-center gap-4 text-sm lg:gap-6">
+        <Link
+          href="/ai-generator"
+          className={cn(
+            "transition-colors hover:text-foreground/80",
+            pathname === "/ai-generator" ? "text-foreground" : "text-foreground/60"
+          )}
         >
-          <Link href="/">
-            首页
-          </Link>
-        </Button>
-        <Button 
-          asChild
-          variant={pathname === "/test/client" ? "default" : "outline"}
+          AI Generator
+        </Link>
+        <Link
+          href="/ai-editor"
+          className={cn(
+            "transition-colors hover:text-foreground/80",
+            pathname === "/ai-editor" ? "text-foreground" : "text-foreground/60"
+          )}
         >
-          <Link href="/test/client">
-            Client
-          </Link>
-        </Button>
-        <Button 
-          asChild
-          variant={pathname === "/test/server" ? "default" : "outline"}
+          AI Editor
+        </Link>
+        <Link
+          href="/pricing"
+          className={cn(
+            "transition-colors hover:text-foreground/80",
+            pathname?.startsWith("/pricing")
+              ? "text-foreground"
+              : "text-foreground/60"
+          )}
         >
-          <Link href="/test/server">
-            Server
-          </Link>
-        </Button>
-      </div>
-      <UserButton />
-    </nav>
+          Pricing
+        </Link>
+      </nav>
+    </div>
   );
 };
