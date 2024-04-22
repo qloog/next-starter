@@ -6,11 +6,23 @@ import {
 } from "@/components/page-header"
 import { Button } from '@/components/ui/button'
 
+import { Txt2ImgForm } from '@/components/ai/txt2img-form';
 import { UserInfo } from '@/components/user-info';
 import { currentUser } from '@/lib/auth';
 
 export default async function Home() {
   const user = await currentUser();
+
+  const image = {
+    prompt: "",
+    aspectRatio: "",
+    width: 512,
+    height: 512,
+    imageNum: 2,
+    steps: 8,
+    guidanceScale: 3,
+    seed: -1,
+  }
 
   return (
     <div className="container relative">
@@ -38,8 +50,15 @@ export default async function Home() {
           </Button>
         </PageActions>
       </PageHeader>
+
       <section className='flex justify-center items-center text-heading3 mt-10'>
-        Main Content
+        <Txt2ImgForm 
+          action='Add'
+          userId='1'
+          type='lcmTxt2img'
+          creditBalance={20}
+          data={image} 
+        />
       </section>
     </div>
   );

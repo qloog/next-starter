@@ -206,3 +206,5 @@ console.log(session?.user)
 - https://mongoosejs.com/
 - https://tailwindcomponents.com/gradient-generator/
 - https://tailwindcss.com/docs/gradient-color-stops
+- https://github.com/vercel-labs/gemini-chatbot
+- https://github.com/weijunext/landing-page-boilerplate

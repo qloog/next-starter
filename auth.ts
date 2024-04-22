@@ -1,20 +1,15 @@
 import NextAuth from "next-auth"
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient, UserRole } from '@prisma/client';
 import { PrismaAdapter } from '@auth/prisma-adapter';
 import authConfig from "@/auth.config";
 import { getUserById } from './lib/actions/user.action';
 
 const prisma = new PrismaClient();
 
-export const {
-  handlers,
-  auth,
-  signIn,
-  signOut,
-} = NextAuth({
+export const { handlers, auth, signIn, signOut } = NextAuth({
   pages: {
     signIn: '/login',
-    // signOut: '/',
+    newUser: '/signup',
     error: '/error',
   },
   events: {
@@ -26,6 +21,19 @@ export const {
     }
   },
   callbacks: {
+    async authorized({ auth, request: { nextUrl } }) {
+      const isLoggedIn = !!auth?.user
+      const isOnLoginPage = nextUrl.pathname.startsWith('/login')
+      const isOnSignupPage = nextUrl.pathname.startsWith('/signup')
+
+      if (isLoggedIn) {
+        if (isOnLoginPage || isOnSignupPage) {
+          return Response.redirect(new URL('/', nextUrl))
+        }
+      }
+
+      return true
+    },
     async signIn({ user, account }) {
       // Allow OAuth without email verification
       if (account?.provider !== "credentials") return true;
@@ -38,7 +46,7 @@ export const {
       }
 
       if (token.role && session.user) {
-        // session.user.role = token.role as UserRole;
+        session.user.role = token.role as UserRole;
       }
 
       if (session.user) {
@@ -51,6 +59,7 @@ export const {
     async jwt({ token }) {
       if (!token.sub) return token;
 
+      // TODO: reduce query db?
       const existingUser = await getUserById(token.sub);
 
       if (!existingUser) return token;
